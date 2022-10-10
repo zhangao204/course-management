@@ -1,0 +1,318 @@
+﻿<Window x:Class="CourseManagement.View.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseManagement.View"
+        mc:Ignorable="d"
+        Name="LoginWindow"
+        Title="LOGIN" Height="600" Width="360"
+        FontFamily="Microsoft YaHei"
+        FontWeight="ExtraLight"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="{x:Null}">
+
+    <Window.Resources>
+        <ControlTemplate TargetType="Button" x:Key="CloseButtonTemplate">
+            <Border Background="Transparent" Name="back">
+                <Path Data="M0 0 12 12M0 12 12 0" Stroke="White" StrokeThickness="1"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="back" Property="Background" Value="#22ffffff"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="back" Property="Background" Value="#88ffffff"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="LoginButtonTemplate">
+            <Border Background="#007DFA" CornerRadius="5" Height="50">
+                <Grid>
+                    <Border CornerRadius="5" Background="#22ffffff" Name="back" Visibility="Hidden"/>
+                    <ContentControl Content="{TemplateBinding Content}"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Foreground="{TemplateBinding Foreground}"
+                                FontSize="16"/>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="back" Property="Visibility" Value="Visible"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="back" Property="Background" Value="#88ffffff"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="UserNameTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True"
+                                CornerRadius="5"
+                                Height="40">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Margin="8" Text="&#xe833;" FontFamily="../Assets/Fonts/#iconfont" FontSize="24" Foreground="Gray"/>
+                                <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" MinHeight="20"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <SolidColorBrush x:Key="TextBox.Static.Border1" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border1" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border1" Color="#FF569DE5"/>
+        <Style x:Key="PasswordBoxStyle" TargetType="{x:Type PasswordBox}">
+            <Setter Property="PasswordChar" Value="●"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border1}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True"
+                                CornerRadius="5"
+                                Height="40">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Margin="8" Text="&#xe824;" FontFamily="../Assets/Fonts/#iconfont" FontSize="24" Foreground="Gray"/>
+                                <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" MinHeight="20"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border1}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border1}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <SolidColorBrush x:Key="TextBox.Static.Border2" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border2" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border2" Color="#FF569DE5"/>
+        <Style x:Key="VlidationCodeTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border2}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True"
+                                CornerRadius="5"
+                                Height="40">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="80"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Margin="8" Text="&#xe81f;" FontFamily="../Assets/Fonts/#iconfont" FontSize="24" Foreground="Gray"/>
+                                <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center" MinHeight="20"/>
+                                <Image Grid.Column="2" Source="../Assets/Images/VlidationCode/code.jpg"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border2}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border2}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Border Margin="5" Background="White" CornerRadius="10">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" BlurRadius="5" Opacity="0.3" Direction="0"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.8*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="#007DFA" CornerRadius="10, 10, 0, 0" MouseLeftButtonDown="WinMove_MouseLeftButtonDown"/>
+            <Button VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Width="30" Height="30"
+                    Template="{StaticResource CloseButtonTemplate}"
+                    Command="{Binding CloseWindowCommand}"
+                    CommandParameter="{Binding ElementName=LoginWindow}"/>
+
+            <StackPanel VerticalAlignment="Center">
+                <Border Width="100" Height="100" CornerRadius="50" Margin="0, 0, 0, 20">
+                    <Border.Background>
+                        <ImageBrush ImageSource="../Assets/Images/Logo/login_logo_bikapic.jpg"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Text="Shadowsong" HorizontalAlignment="Center" Foreground="White" FontSize="18px"/>
+            </StackPanel>
+
+            <Grid Grid.Row="1" Margin="20, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition MinHeight="20" Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBox Style="{DynamicResource UserNameTextBoxStyle}" Text="{Binding LoginModel.UserName}"/>
+                <PasswordBox Style="{DynamicResource PasswordBoxStyle}" Grid.Row="1"/>
+                <TextBox Style="{DynamicResource VlidationCodeTextBoxStyle}" Text="{Binding LoginModel.ValidationCode}" Grid.Row="2"/>
+                <Button Grid.Row="3" Content="LOGIN" Foreground="White" Template="{StaticResource LoginButtonTemplate}"/>
+                <TextBlock Text="ERROR" Foreground="Red" Grid.Row="4"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="20, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="#dddddd" BorderThickness="0, 0, 0, 1" VerticalAlignment="Center"/>
+                    <Border BorderBrush="#dddddd" BorderThickness="0, 0, 0, 1" VerticalAlignment="Center" Grid.Column="2"/>
+                    <TextBlock Text="OR" Grid.Column="1" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+                <UniformGrid Columns="5" Grid.Row="1">
+                    <UniformGrid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontFamily" Value="../Assets/Fonts/#iconfont"/>
+                            <Setter Property="FontSize" Value="40"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Foreground" Value="#90007DFA"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Foreground" Value="#007DFA"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </UniformGrid.Resources>
+                    <TextBlock Text="&#xe83a;"/>
+                    <Border/>
+                    <TextBlock Text="&#xe837;"/>
+                    <Border/>
+                    <TextBlock Text="&#xe817;"/>
+                </UniformGrid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

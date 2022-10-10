@@ -8,11 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="assets\" />
-    <Folder Include="common\" />
+    <None Remove="Assets\Fonts\iconfont.ttf" />
+    <None Remove="Assets\Images\Logo\login_logo_bikapic.jpg" />
+    <None Remove="Assets\Images\VlidationCode\code.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="DataAccess\" />
-    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\iconfont.ttf" />
+    <Resource Include="Assets\Images\Logo\login_logo_bikapic.jpg" />
+    <Resource Include="Assets\Images\VlidationCode\code.jpg" />
   </ItemGroup>
 
 </Project>
