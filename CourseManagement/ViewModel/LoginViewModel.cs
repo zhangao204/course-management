@@ -26,7 +26,9 @@ namespace CourseManagement.ViewModel
         public LoginViewModel()
         {
             this.LoginModel = new LoginModel();
-            this.LoginModel.UserName = "shadowsong";
+
+            this.LoginModel.UserName = "Shadowsong";
+            this.LoginModel.Password = "shadowsong";
 
             this.CloseWindowCommand = new CommandBase()
             {

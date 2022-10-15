@@ -10,7 +10,6 @@ namespace CourseManagement.Model
     public class LoginModel : NotifyBase
     {
         private string _userName;
-
         public string UserName
         {
             get { return _userName; }
@@ -22,7 +21,6 @@ namespace CourseManagement.Model
         }
 
         private string _password;
-
         public string Password
         {
             get { return _password; }
@@ -34,7 +32,6 @@ namespace CourseManagement.Model
         }
 
         private string _validationCode;
-
         public string ValidationCode
         {
             get { return _validationCode; }
@@ -44,6 +41,7 @@ namespace CourseManagement.Model
                 this.DoNotify();
             }
         }
+
 
     }
 }

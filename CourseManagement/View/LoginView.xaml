@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseManagement.View"
+        xmlns:common="clr-namespace:CourseManagement.Common"
         mc:Ignorable="d"
         Name="LoginWindow"
         Title="LOGIN" Height="600" Width="360"
@@ -174,6 +175,7 @@
         <SolidColorBrush x:Key="TextBox.MouseOver.Border2" Color="#FF7EB4EA"/>
         <SolidColorBrush x:Key="TextBox.Focus.Border2" Color="#FF569DE5"/>
         <Style x:Key="VlidationCodeTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
             <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border2}"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -269,7 +271,10 @@
                     <RowDefinition MinHeight="20" Height="auto"/>
                 </Grid.RowDefinitions>
                 <TextBox Style="{DynamicResource UserNameTextBoxStyle}" Text="{Binding LoginModel.UserName}"/>
-                <PasswordBox Style="{DynamicResource PasswordBoxStyle}" Grid.Row="1"/>
+                <PasswordBox Style="{DynamicResource PasswordBoxStyle}" 
+                             Grid.Row="1"
+                             common:PasswordHelper.Attach="True"
+                             common:PasswordHelper.Password="{Binding LoginModel.Password}"/>
                 <TextBox Style="{DynamicResource VlidationCodeTextBoxStyle}" Text="{Binding LoginModel.ValidationCode}" Grid.Row="2"/>
                 <Button Grid.Row="3" Content="LOGIN" Foreground="White" Template="{StaticResource LoginButtonTemplate}"/>
                 <TextBlock Text="ERROR" Foreground="Red" Grid.Row="4"/>
